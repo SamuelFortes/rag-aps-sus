@@ -1,0 +1,20 @@
+# Extração de PDF
+pymupdf==1.25.3
+
+# Embeddings
+sentence-transformers==3.4.1
+
+# Geração
+google-genai==1.2.0
+
+# Índice vetorial
+faiss-cpu==1.10.0
+
+# Variáveis de ambiente
+python-dotenv==1.0.1
+
+# Busca híbrida (melhoria)
+rank-bm25==0.2.2
+
+# Interface
+gradio==5.16.0
