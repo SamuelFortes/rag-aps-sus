@@ -1,0 +1,35 @@
+{"id": "q01", "question": "Com que frequência devo agendar as consultas de pré-natal de risco habitual ao longo da gestação?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [34, 63]}
+{"id": "q02", "question": "Como calculo a data provável do parto a partir da DUM quando não tenho gestograma?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [73]}
+{"id": "q03", "question": "Qual a dose de sulfato ferroso para profilaxia em gestante sem anemia e a partir de quando iniciar?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [115, 116]}
+{"id": "q04", "question": "Quais valores do TTGO 75 g (jejum e 2 horas) fecham o diagnóstico de diabetes gestacional?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [115, 178]}
+{"id": "q05", "question": "Gestante sem nenhuma dose de vacina antitetânica registrada: como devo fazer o esquema de dT?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [118]}
+{"id": "q06", "question": "Quais sinais de alarme na gestante o ACS deve comunicar ao enfermeiro ou ao médico da equipe?", "in_scope": true, "doc": "cadernos_atencao_basica_32_prenatal.pdf", "pages": [47]}
+{"id": "q07", "question": "Quais adultos sem sintomas devem ser rastreados para diabetes tipo 2?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [28]}
+{"id": "q08", "question": "Paciente com glicemia de jejum de 118 mg/dL: como classifico o resultado e qual exame peço em seguida?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [32, 34]}
+{"id": "q09", "question": "Como iniciar a metformina para reduzir os efeitos gastrointestinais?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [54]}
+{"id": "q10", "question": "Como orientar o paciente com diabetes, consciente, a tratar uma hipoglicemia?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [71]}
+{"id": "q11", "question": "Com que periodicidade a pessoa com diabetes deve ter os pés examinados na unidade?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [95]}
+{"id": "q12", "question": "Quais testes clínicos posso usar na UBS para detectar perda da sensibilidade protetora plantar?", "in_scope": true, "doc": "estrategias_cuidado_pessoa_diabetes_mellitus_cab36.pdf", "pages": [98]}
+{"id": "q13", "question": "Quais critérios confirmam o diagnóstico de hipertensão arterial a partir das medidas no consultório?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [32, 36]}
+{"id": "q14", "question": "Na aferição da pressão, quanto do braço a câmara inflável deve cobrir e em que velocidade devo desinflar o manguito?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [31]}
+{"id": "q15", "question": "Hipertenso com meta atingida e risco cardiovascular moderado pelo Framingham: qual a periodicidade das consultas médica e de enfermagem?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [75]}
+{"id": "q16", "question": "Quando considero que o paciente tem hipertensão resistente e qual a conduta?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [62]}
+{"id": "q17", "question": "Depois de iniciar um diurético tiazídico, quando devo dosar o potássio sérico?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [64]}
+{"id": "q18", "question": "Na suspeita de hipertensão do avental branco, que exame é recomendado para confirmar ou excluir o diagnóstico?", "in_scope": true, "doc": "hipertensao_arterial_sistemica_cab37.pdf", "pages": [33]}
+{"id": "q19", "question": "Qual o número máximo de pessoas sob responsabilidade de uma equipe de Saúde da Família e qual a média recomendada?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [57]}
+{"id": "q20", "question": "Quantas pessoas cada agente comunitário de saúde pode acompanhar no máximo e quantos ACS cabem numa eSF?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [57, 63]}
+{"id": "q21", "question": "Qual é a referência de frequência de visitas domiciliares do ACS para cada família?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [51]}
+{"id": "q22", "question": "Quais são as modalidades de composição dos profissionais de saúde bucal na equipe de Saúde da Família?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [61, 62]}
+{"id": "q23", "question": "Qual a carga horária mínima semanal das equipes de Consultório na Rua e como elas desenvolvem suas atividades?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [64]}
+{"id": "q24", "question": "Quais exigências de carga horária a equipe precisa cumprir para compor um NASF 1?", "in_scope": true, "doc": "politica_nacional_atencao_basica.pdf", "pages": [73]}
+{"id": "q25", "question": "Quais materiais a unidade precisa ter para inserção e retirada de DIU?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [53]}
+{"id": "q26", "question": "A cirurgia de unha encravada (cantoplastia) está entre os procedimentos ofertados na APS?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [16, 50]}
+{"id": "q27", "question": "Que insumos são necessários para fazer lavagem otológica para remoção de cerume?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [54]}
+{"id": "q28", "question": "Quais métodos contraceptivos a APS deve disponibilizar na abordagem em saúde sexual e reprodutiva?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [28]}
+{"id": "q29", "question": "Se um procedimento não aparece na Carteira de Serviços, isso quer dizer que ele não deve ser feito na APS?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [10]}
+{"id": "q30", "question": "O gestor municipal pode alterar os itens e insumos previstos na Carteira de Serviços?", "in_scope": true, "doc": "carteira_servicos_atencao_primaria_saude.pdf", "pages": [11]}
+{"id": "q31", "question": "Quais são os critérios diagnósticos do transtorno do espectro autista em crianças pequenas?", "in_scope": false, "doc": null, "pages": []}
+{"id": "q32", "question": "Como deve ser o protocolo de reabilitação fisioterapêutica após artroplastia total de joelho?", "in_scope": false, "doc": null, "pages": []}
+{"id": "q33", "question": "Qual o esquema de quimioterapia de primeira linha para câncer de pulmão de pequenas células?", "in_scope": false, "doc": null, "pages": []}
+{"id": "q34", "question": "Como configuro uma VPN corporativa no Windows 11?", "in_scope": false, "doc": null, "pages": []}
+{"id": "q35", "question": "Qual o prazo para entregar a declaração do imposto de renda de pessoa física?", "in_scope": false, "doc": null, "pages": []}
