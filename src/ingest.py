@@ -1,7 +1,6 @@
 import pymupdf
 
-RAW_DIR = r"C:\Users\077114263\Documents\projeto-RAG\data\raw"
-OUT_FILE = r"C:\Users\077114263\Documents\projeto-RAG\data\processed\pages.jsonl"
+from src.config import RAW_DIR, PAGES_FILE as OUT_FILE
 
 def extract_pages(pdf_path):
     pdf = pymupdf.open(pdf_path)
