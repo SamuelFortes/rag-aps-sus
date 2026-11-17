@@ -97,7 +97,7 @@ Em paralelo após a T0: T1, T2 e T3a. Depois da T1: T3b e, com a T2, a T5.
 
 ### T0 — Contrato e esqueleto (gerente)
 - Instalar `requirements.txt` no `.venv` principal e conferir os imports.
-- Criar `src/config.py` com as constantes da seção 2. Os caminhos são relativos à raiz do repositório (`data/raw`, `data/processed`, `data/index`), resolvidos a partir da localização do próprio `config.py`. O `.env` é carregado com `load_dotenv()`, e `GEMINI_API_KEY` e `GEMINI_MODEL` (padrão `gemini-2.5-flash`) vêm do ambiente.
+- Criar `src/config.py` com as constantes da seção 2. Os caminhos são relativos à raiz do repositório (`data/raw`, `data/processed`, `data/index`), resolvidos a partir da localização do próprio `config.py`. O `.env` é carregado com `load_dotenv()`, e `GEMINI_API_KEY` e `GEMINI_MODEL` (padrão `gemini-3.5-flash-lite`; o `gemini-2.5-flash` original não está disponível para a chave do projeto) vêm do ambiente.
 - Substituir os caminhos absolutos do `src/ingest.py` atual pelos de `config.py`, sem mexer na lógica esboçada, que fica para a T1.
 - Criar os módulos vazios com assinaturas e docstrings do contrato, além de `eval/` e `data/index/`.
 - Commit em `master`, que é a base das worktrees filhas.

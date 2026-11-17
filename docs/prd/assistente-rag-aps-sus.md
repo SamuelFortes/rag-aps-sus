@@ -27,7 +27,7 @@ O projeto é um portfólio público (GitHub + demo no Hugging Face Spaces) para 
 - **Chunking dentro da página.** Um chunk nunca atravessa páginas. Chunks de ~800–1000 caracteres com ~150 de sobreposição. Assim a citação "documento + página" é exata.
 - **Busca baseline** vetorial com embeddings `intfloat/multilingual-e5-base` e índice FAISS.
 - **Melhoria** com busca híbrida BM25 + vetorial, combinada por Reciprocal Rank Fusion (RRF), medida contra o baseline.
-- **Geração** com Gemini (`gemini-2.5-flash` por padrão, configurável por variável de ambiente) em temperatura 0. O modelo recebe os 5 chunks mais relevantes, cada um identificado por documento e página.
+- **Geração** com Gemini (`gemini-3.5-flash-lite` por padrão, configurável por variável de ambiente) em temperatura 0. O modelo recebe os 5 chunks mais relevantes, cada um identificado por documento e página.
 - **Citação inline** no formato `[documento, p. N]`. A interface também lista as fontes usadas.
 - **Recusa em duas camadas.** (1) Se a similaridade do melhor resultado ficar abaixo de um limiar calibrado no conjunto de avaliação, o sistema recusa sem chamar o LLM. (2) O prompt instrui o Gemini a recusar quando o contexto não responde. A recusa é sempre o texto fixo: "Não encontrei essa informação nos documentos disponíveis."
 - **Índice versionado.** Chunks e índice FAISS são gerados localmente e commitados. A demo apenas os carrega, sem reprocessar os PDFs na inicialização.
@@ -116,6 +116,6 @@ O projeto é um portfólio público (GitHub + demo no Hugging Face Spaces) para 
 - **sentence-transformers** com `intfloat/multilingual-e5-base`: bom em português e roda em CPU no Spaces gratuito.
 - **FAISS (faiss-cpu)**: suficiente para o tamanho do corpus e fácil de embarcar no Spaces.
 - **rank-bm25** para a componente lexical da busca híbrida.
-- **google-genai** com Gemini `gemini-2.5-flash`, por ter free tier e baixa latência.
+- **google-genai** com Gemini `gemini-3.5-flash-lite`, por ter baixa latência e menor consumo de cota. O `gemini-2.5-flash`, escolhido originalmente, retorna 404 ("no longer available to new users") para a chave do projeto.
 - **python-dotenv** para configuração local.
 - **Gradio** para a interface e **Hugging Face Spaces** (CPU gratuito) para hospedagem.
