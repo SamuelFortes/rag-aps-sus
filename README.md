@@ -17,7 +17,7 @@ Assistente de perguntas e respostas sobre documentos oficiais da Atenção Prim�
 
 ## Demo
 
-- [link da demo no Hugging Face Spaces]
+- **[Abrir a demo no Hugging Face Spaces](https://huggingface.co/spaces/Samuka21/assistente-aps-sus)**
 
 ![demo](docs/demo.gif)
 

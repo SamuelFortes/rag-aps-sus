@@ -6,6 +6,7 @@ de forma preguiçosa na primeira busca e mantidos em cache por diretório.
 from __future__ import annotations
 
 import json
+import os
 import re
 import unicodedata
 from functools import lru_cache
@@ -15,6 +16,20 @@ import numpy as np
 
 from src import config
 from src.schema import Hit
+
+# Hugging Face Spaces com ZeroGPU: o pacote `spaces` existe e o Space exige ao menos
+# uma função com @spaces.GPU. Fora dos Spaces (local, testes) nada disso é ativado.
+try:
+    import spaces
+except ImportError:
+    spaces = None
+ZERO_GPU = spaces is not None and os.getenv("SPACES_ZERO_GPU", "").lower() in ("1", "true")
+
+
+def _gpu(fn):
+    """Aplica @spaces.GPU quando o pacote `spaces` está disponível; senão, não faz nada."""
+    return spaces.GPU(duration=20)(fn) if spaces is not None else fn
+
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
 
@@ -42,9 +57,18 @@ def rrf_fuse(rankings: list[list[int]], rrf_k: int = config.RRF_K) -> list[int]:
 def _default_encoder():
     from sentence_transformers import SentenceTransformer
 
-    return SentenceTransformer(config.EMBEDDING_MODEL)
+    # No ZeroGPU o modelo é colocado em "cuda" na carga; a GPU real só é alocada
+    # durante as chamadas a funções com @spaces.GPU.
+    return SentenceTransformer(config.EMBEDDING_MODEL, device="cuda" if ZERO_GPU else None)
 
 
+def warmup(index_dir: Path | str | None = None) -> None:
+    """Carrega índice e modelo de embeddings sem fazer nenhuma busca (não usa GPU)."""
+    get_retriever(index_dir)
+    _default_encoder()
+
+
+@_gpu
 def encode_query(query: str) -> np.ndarray:
     vec = _default_encoder().encode(
         [config.QUERY_PREFIX + query], normalize_embeddings=True

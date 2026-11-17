@@ -78,7 +78,7 @@ def responder(pergunta: str) -> tuple[str, str]:
 def preload() -> None:
     """Carrega índice e modelo de embeddings antes da primeira pergunta."""
     try:
-        retrieval.search_with_best("pré-carregamento", 1, config.DEFAULT_MODE)
+        retrieval.warmup()
         log.info("Índice e modelo de embeddings carregados.")
     except Exception:
         log.exception("Falha ao pré-carregar o índice")
