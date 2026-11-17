@@ -126,6 +126,15 @@ def test_retry_on_429_then_success():
     assert waits == [10, 20]
 
 
+def test_retry_on_503_unavailable_then_success():
+    responses = [Answer("", False, error="Erro na API do Gemini: ServerError: 503 UNAVAILABLE."),
+                 Answer("ok [a, p. 3]", False, citations=[("a", 3)])]
+    waits = []
+    ans = ev.call_answer_with_retry(lambda q, mode="hybrid": responses.pop(0), "Q1", "vector",
+                                    retries=3, retry_wait=10, sleep_fn=waits.append)
+    assert ans.error is None and waits == [10]
+
+
 def test_retry_gives_up_and_exceptions_become_errors():
     def answer(q, mode="hybrid"):
         raise RuntimeError("429 quota exceeded")

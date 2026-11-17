@@ -97,8 +97,11 @@ def citation_correct(ans: Answer, q: dict) -> bool:
 
 # ---------------------------------------------------------------- rate limit
 def _is_rate_limit(msg: str | None) -> bool:
+    """Erros transitórios que valem retry: 429 (limite de taxa) e 503 (modelo
+    sobrecarregado, "UNAVAILABLE"), que o Gemini devolve em picos de demanda."""
     m = (msg or "").lower()
-    return "429" in m or "resource_exhausted" in m or "rate limit" in m or "quota" in m
+    return ("429" in m or "resource_exhausted" in m or "rate limit" in m or "quota" in m
+            or "503" in m or "unavailable" in m)
 
 
 def call_answer_with_retry(
@@ -136,8 +139,10 @@ def _hits_to_rows(hits: list[Hit]) -> list[dict]:
 
 def best_vector_similarity(search_fn: SearchFn, question: str, mode: str,
                            hits: list[Hit]) -> float | None:
-    """Melhor similaridade vetorial (cosseno). No modo híbrido o score é RRF,
-    então faz uma busca vetorial à parte (local, sem custo de API)."""
+    """Melhor similaridade vetorial (cosseno), a mesma que generation.answer()
+    compara com o limiar. Hit.score é sempre o cosseno, mas no modo híbrido o
+    top-5 fundido por RRF pode não conter o chunk de maior cosseno; por isso faz
+    uma busca vetorial à parte (local, sem custo de API)."""
     vec_hits = hits if mode == "vector" else search_fn(question, k=config.TOP_K, mode="vector")
     return max((float(h.score) for h in vec_hits), default=None)
 
