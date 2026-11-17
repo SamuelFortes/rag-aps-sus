@@ -1,43 +1,96 @@
+"""Dev 1 (T1): PDFs em data/raw -> data/processed/pages.jsonl.
+
+Formato de saída por linha: {"doc": "<arquivo.pdf>", "page": <int, base 1>, "text": "<texto limpo>"}.
+Executar com: python -m src.ingest
+"""
+import json
+import re
+import sys
+from collections import Counter
+
 import pymupdf
 
-from src.config import RAW_DIR, PAGES_FILE as OUT_FILE
+from src.config import MIN_PAGE_CHARS, RAW_DIR, REPEATED_LINE_RATIO, PAGES_FILE as OUT_FILE
 
-def extract_pages(pdf_path):
-    pdf = pymupdf.open(pdf_path)
-    pages = []
-    for index, page in enumerate(pdf, start=1):
-        pages.append(index, page.get_text()) # atrelando a pagina ao texto específico para facilitar na hora de saber a qual página pertence aquele texto
+# palavra hifenizada no fim da linha: letra + "-" + quebra + letra
+_HYPHEN_RE = re.compile(r"(?<=[^\W\d_])-[ \t]*\n[ \t]*(?=[^\W\d_])")
+_WHITESPACE_RE = re.compile(r"\s+")
+# linhas muito curtas (ex.: incisos "I", "II") não são tratadas como cabeçalho/rodapé
+_MIN_HEADER_LEN = 4
+
+
+def extract_pages(pdf_path) -> list[tuple[int, str]]:
+    with pymupdf.open(pdf_path) as pdf:
+        pages = []
+        for index, page in enumerate(pdf, start=1):
+            pages.append((index, page.get_text()))  # atrelando a pagina ao texto específico para facilitar na hora de saber a qual página pertence aquele texto
     return pages
 
-def find_repeated_lines(pages):
-    conta em quantas páginas cada linha aparece
-    repeated_lines = {}
-    for page_index, page in enumerate(pages):
-        lines = page[page_index].splitlines()
-        for line_index, line in enumerate(lines):
-            for index, page_after_current_page in enumerate(pages[page_index + 1:]):
-                if line[line_index] == page_after_current_page[index][1]:
-                    repeated_lines[line[line_index]].append(page_index)
+
+def _line_key(line: str) -> str:
+    return _WHITESPACE_RE.sub(" ", line).strip()
 
 
+def find_repeated_lines(pages: list[tuple[int, str]], ratio: float = REPEATED_LINE_RATIO) -> set[str]:
+    # conta em quantas páginas cada linha aparece (cada linha conta no máximo uma vez por página)
+    page_count = Counter()
+    for _, text in pages:
+        lines = {_line_key(line) for line in text.splitlines()}
+        lines.discard("")
+        page_count.update(lines)
+
+    # se aparece em mais de ~30% das páginas, é cabeçalho/rodapé
+    # devolve o conjunto dessas linhas
+    if not pages:
+        return set()
+    total = len(pages)
+    # (só conta como repetida se aparece em pelo menos 2 páginas, senão em PDFs curtos tudo seria removido)
+    return {
+        line
+        for line, n in page_count.items()
+        if n >= 2 and n / total > ratio and len(line) >= _MIN_HEADER_LEN
+    }
 
 
+def clean_text(text: str, repeated_lines: set[str]) -> str:
+    # remove as linhas repetidas
+    lines = [line for line in text.splitlines() if _line_key(line) not in repeated_lines]
+    text = "\n".join(lines)
+    # junta palavras hifenizadas no fim da linha (regex: "-\n" entre letras)
+    text = _HYPHEN_RE.sub("", text)
+    # normaliza espaços e quebras de linha
+    return _WHITESPACE_RE.sub(" ", text).strip()
 
 
-    se aparece em mais de ~30% das páginas, é cabeçalho/rodapé
-    devolve o conjunto dessas linhas
+def process_pdf(pdf_path) -> list[dict]:
+    pages = extract_pages(pdf_path)
+    repeated = find_repeated_lines(pages)
+    records = []
+    for page_number, raw_text in pages:
+        text = clean_text(raw_text, repeated)
+        if len(text) < MIN_PAGE_CHARS:  # pula (capa, página em branco)
+            continue
+        records.append({"doc": pdf_path.name, "page": page_number, "text": text})
+    return records
 
-função limpar(texto, linhas_repetidas):
-    remove as linhas repetidas
-    junta palavras hifenizadas no fim da linha (regex: "-\n" entre letras)
-    normaliza espaços e quebras de linha
-    devolve texto limpo
 
-principal:
-    para cada PDF em RAW_DIR:
-        páginas = extrair_paginas(pdf)
-        repetidas = achar_linhas_repetidas(páginas)
-        para cada página:
-            texto = limpar(...)
-            se len(texto) < ~50 caracteres: pula (capa, página em branco)
-            grava uma linha JSON: {"doc": nome do arquivo, "page": n, "text": texto}
+def main() -> None:
+    pdfs = sorted(RAW_DIR.glob("*.pdf"))
+    if not pdfs:
+        print(f"Nenhum PDF encontrado em {RAW_DIR}", file=sys.stderr)
+    OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUT_FILE, "w", encoding="utf-8", newline="\n") as out:
+        for pdf_path in pdfs:
+            try:
+                records = process_pdf(pdf_path)
+            except Exception as exc:  # PDF ilegível: avisa e segue
+                print(f"AVISO: não foi possível ler {pdf_path.name}: {exc}", file=sys.stderr)
+                continue
+            for record in records:
+                out.write(json.dumps(record, ensure_ascii=False) + "\n")
+            print(f"{pdf_path.name}: {len(records)} páginas")
+    print(f"Gravado em {OUT_FILE}")
+
+
+if __name__ == "__main__":
+    main()
