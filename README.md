@@ -21,8 +21,6 @@ Assistente de perguntas e respostas sobre documentos oficiais da Atenção Prim�
 
 ![demo](docs/demo.gif)
 
-*O GIF da demo ainda será adicionado.*
-
 ## Motivação
 
 Na iniciação científica (PIBITI), trabalhando com gestão de Unidades Básicas de Saúde, percebi que profissionais da APS perdem tempo procurando orientações em documentos extensos do Ministério da Saúde. Este projeto testa se um assistente com IA consegue responder essas dúvidas de forma confiável, citando a fonte, e mede isso. É um projeto independente, motivado por essa experiência, e não uma continuação do trabalho da IC.
