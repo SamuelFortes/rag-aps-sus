@@ -1,0 +1,181 @@
+{
+  "retrieval_only": {
+    "vector": {
+      "n_questions": 35,
+      "n_in_scope": 30,
+      "n_out_of_scope": 5,
+      "hit@5": 0.9,
+      "search_errors": 0,
+      "threshold_sweep": [
+        {
+          "threshold": 0.75,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 0,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.76,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 0,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.77,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 0,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.78,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 0,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.79,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 0,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.8,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.81,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.82,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.83,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.84,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.85,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 2,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.86,
+          "in_scope_refused": 1,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 4,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.87,
+          "in_scope_refused": 4,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 5,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.88,
+          "in_scope_refused": 9,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 5,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.89,
+          "in_scope_refused": 14,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 5,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.9,
+          "in_scope_refused": 23,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 5,
+          "n_out_of_scope": 5
+        }
+      ],
+      "updated_at": "2026-11-17T12:06:09+00:00"
+    },
+    "hybrid": {
+      "n_questions": 35,
+      "n_in_scope": 30,
+      "n_out_of_scope": 5,
+      "hit@5": 0.9666666666666667,
+      "search_errors": 0,
+      "threshold_sweep": [
+        {
+          "threshold": 0.845,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.846,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 1,
+          "n_out_of_scope": 5
+        },
+        {
+          "threshold": 0.85,
+          "in_scope_refused": 0,
+          "n_in_scope": 30,
+          "out_of_scope_refused": 2,
+          "n_out_of_scope": 5
+        }
+      ],
+      "updated_at": "2026-11-17T12:06:38+00:00"
+    }
+  },
+  "vector": {
+    "n_questions": 35,
+    "n_in_scope": 30,
+    "n_out_of_scope": 5,
+    "hit@5": 0.9,
+    "search_errors": 0,
+    "citation_correct": 0.8333333333333334,
+    "refusal_correct": 1.0,
+    "wrong_refusals": 2,
+    "api_errors": 0,
+    "updated_at": "2026-11-17T12:19:03+00:00"
+  },
+  "hybrid": {
+    "n_questions": 35,
+    "n_in_scope": 30,
+    "n_out_of_scope": 5,
+    "hit@5": 0.9666666666666667,
+    "search_errors": 0,
+    "citation_correct": 0.9,
+    "refusal_correct": 1.0,
+    "wrong_refusals": 3,
+    "api_errors": 0,
+    "updated_at": "2026-11-17T12:14:58+00:00"
+  }
+}

@@ -38,7 +38,9 @@ SEARCH_MODES = ("vector", "hybrid")
 DEFAULT_MODE = "hybrid"
 
 # Recusa
-SIMILARITY_THRESHOLD = 0.80  # provisório; calibrado na T4
+# Calibrado na T4 (2026-11-17) com eval --retrieval-only: maior limiar com 0 recusas
+# indevidas no escopo e margem de ~0,01 abaixo da menor similaridade no escopo (0,856).
+SIMILARITY_THRESHOLD = 0.846
 RECUSA = "Não encontrei essa informação nos documentos disponíveis."
 
 # Geração
