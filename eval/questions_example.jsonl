@@ -1,0 +1,4 @@
+{"id": "ex01", "question": "Qual é a periodicidade recomendada para consultas de pré-natal de risco habitual?", "in_scope": true, "doc": "exemplo_pre_natal.pdf", "pages": [12, 13]}
+{"id": "ex02", "question": "Qual o esquema vacinal contra hepatite B para adultos não vacinados?", "in_scope": true, "doc": "exemplo_imunizacao.pdf", "pages": [45]}
+{"id": "ex03", "question": "Com que frequência deve ser feito o rastreamento do câncer do colo do útero?", "in_scope": true, "doc": "exemplo_rastreamento.pdf", "pages": [30, 31]}
+{"id": "ex04", "question": "Qual é a melhor configuração de servidor para hospedar um site de e-commerce?", "in_scope": false, "doc": null, "pages": []}
