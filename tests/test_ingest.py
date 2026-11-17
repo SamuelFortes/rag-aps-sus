@@ -13,6 +13,30 @@ def test_hifen_entre_numeros_nao_e_juntado():
     assert clean_text("entre 10-\n20 semanas", set()) == "entre 10- 20 semanas"
 
 
+def test_hifen_mantido_antes_de_pronome_encliticos():
+    assert clean_text("Deve-\nse evitar.", set()) == "Deve-se evitar."
+    assert clean_text("Trata-\nse de", set()) == "Trata-se de"
+    assert clean_text("orientá-\nla sobre", set()) == "orientá-la sobre"
+    assert clean_text("realizar-\nse-á", set()) == "realizar-se-á"
+    assert clean_text("encaminhá-\nlos.", set()) == "encaminhá-los."
+    # palavra comum que só começa como pronome continua sendo juntada
+    assert clean_text("pres-\nsão arterial", set()) == "pressão arterial"
+    assert clean_text("acompa-\nnhamento", set()) == "acompanhamento"
+    assert clean_text("diag-\nnóstico", set()) == "diagnóstico"
+
+
+def test_hifen_mantido_antes_de_maiuscula():
+    assert clean_text("Ministério da Saúde-\nBrasil", set()) == "Ministério da Saúde-Brasil"
+    assert clean_text("pré-\nÉclampsia", set()) == "pré-Éclampsia"
+
+
+def test_remove_linhas_de_numero_de_pagina():
+    text = "33\nConteúdo da página.\n 170 \n33 33 33 33\nTotal de 6 consultas.\n12345"
+    assert clean_text(text, set()) == "Conteúdo da página. Total de 6 consultas. 12345"
+    # números diferentes na mesma linha (ex.: tabela) não são removidos
+    assert clean_text("10 20 30", set()) == "10 20 30"
+
+
 def test_normaliza_espacos_e_quebras():
     assert clean_text("  texto   com\n\n\tespaços  \n", set()) == "texto com espaços"
 

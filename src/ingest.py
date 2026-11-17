@@ -14,6 +14,13 @@ from src.config import MIN_PAGE_CHARS, RAW_DIR, REPEATED_LINE_RATIO, PAGES_FILE 
 
 # palavra hifenizada no fim da linha: letra + "-" + quebra + letra
 _HYPHEN_RE = re.compile(r"(?<=[^\W\d_])-[ \t]*\n[ \t]*(?=[^\W\d_])")
+# hífen que deve ser mantido (só a quebra sai): pronome enclítico/mesoclítico
+# ("Deve-\nse" -> "Deve-se") ou linha seguinte começando com maiúscula
+_ENCLITICS = r"(?:se|lo|la|los|las|lhe|lhes|me|te|nos|vos|o|a|os|as)\b"
+_UPPERCASE = r"[A-ZÀ-ÖØ-Þ]"
+_KEEP_HYPHEN_RE = re.compile(r"(?<=[^\W\d_])-[ \t]*\n[ \t]*(?=" + _ENCLITICS + "|" + _UPPERCASE + ")")
+# linha que é só número de página, inclusive repetido ("33" ou "33 33 33 33")
+_PAGE_NUMBER_LINE_RE = re.compile(r"^\s*(\d{1,4})(?:\s+\1)*\s*$")
 _WHITESPACE_RE = re.compile(r"\s+")
 # linhas muito curtas (ex.: incisos "I", "II") não são tratadas como cabeçalho/rodapé
 _MIN_HEADER_LEN = 4
@@ -55,7 +62,11 @@ def find_repeated_lines(pages: list[tuple[int, str]], ratio: float = REPEATED_LI
 def clean_text(text: str, repeated_lines: set[str]) -> str:
     # remove as linhas repetidas
     lines = [line for line in text.splitlines() if _line_key(line) not in repeated_lines]
+    # remove linhas que são só número de página
+    lines = [line for line in lines if not _PAGE_NUMBER_LINE_RE.match(line)]
     text = "\n".join(lines)
+    # mantém o hífen (sem a quebra) em ênclise/mesóclise e antes de maiúscula
+    text = _KEEP_HYPHEN_RE.sub("-", text)
     # junta palavras hifenizadas no fim da linha (regex: "-\n" entre letras)
     text = _HYPHEN_RE.sub("", text)
     # normaliza espaços e quebras de linha
